@@ -10,7 +10,7 @@ namespace Test_Rayhan
         static void Main(string[] args)
         {
             int[] points = { 4, 2, 1, 3, 5 };
-            ArrayManipulation.Splice(points, 3, 6);
+            ArrayManipulation.Splice(points, 2, 9);
         }
     }
 
@@ -67,10 +67,14 @@ namespace Test_Rayhan
                 newArr[x] = arr[x]; 
             }
             newArr[indexNum] = num;
-            for(int y = newArr.Length-1; y==indexNum; y--)
+            for(int y = newArr.Length-1; y>indexNum; y--)
             {
-                newArr[y] = 2;
+                newArr[y] = arr[y-1];
             }
+            // for(int y = newArr.Length-1; y==indexNum; y--)
+            // {
+            //     newArr[y] = 2;
+            // }
             Console.Write(string.Join("", newArr));
         }
     }
