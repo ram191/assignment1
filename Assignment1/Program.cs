@@ -67,12 +67,11 @@ namespace Test_Rayhan
                 newArr[x] = arr[x]; 
             }
             newArr[indexNum] = num;
-            for(int x = indexNum + 1; x<newArr.Length; x++)
+            for(int y = newArr.Length-1; y==indexNum; y--)
             {
-                newArr[x] = arr[x];
+                newArr[y] = 2;
             }
-            newArr[indexNum] = num;
-            Console.Write(string.Join("", arr));
+            Console.Write(string.Join("", newArr));
         }
     }
 
@@ -177,15 +176,16 @@ namespace Test_Rayhan
             }
             Console.WriteLine(sum);
         }
+    }
 
-        public static void MaxCharacter(string str)
+    class MaxChar
+    {
+    public static void MaxCharacter(string str)
         {
             var query = str.GroupBy(item => item).OrderByDescending(g => g.Count()).Select(g => g.Key).First();
             Console.WriteLine(query);
         }
-
     }
-
     class Palindrome
     {
         public static bool IsPalindrome(string str)
