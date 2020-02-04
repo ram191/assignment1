@@ -9,24 +9,45 @@ namespace Test_Rayhan
     {
         static void Main(string[] args)
         {
-            int[] numbers = new int[5] { 1, 2, 3, 4, 5 };
-            //Assignment 2
-            SortingAlgorithm.BubbleSort();
+            int[] points = { 4, 2, 1, 3, 5 };
+            ArrayManipulation.Splice(points, 3, 6);
+        }
+    }
+
+    class Anagram
+    {
+        public static bool IsAnagram(string str1, string str2)
+        {
+            char[] arr1 = str1.ToCharArray();
+            char[] arr2 = str2.ToCharArray();
+            Array.Sort(arr1);
+            Array.Sort(arr2);
+
+            str1 = new string(arr1);
+            str2 = new string(arr2);
+            if(str1 == str2)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
         }
     }
 
     class ArrayManipulation
     {
-        public static void Sort()
+        //sorting
+        public static void Sort(int[] arr)
         {
-            int[] points = { 4, 2, 1, 3, 5 };
-            Array.Sort(points);
-            foreach (int num in points)
+            Array.Sort(arr);
+            foreach(int x in arr)
             {
-                Console.Write(num + ",");
+                Console.Write(x);
             }
         }
 
+        //reverse
         public static void Reverse()
         {
             int[] points = { 4, 2, 1, 3, 5 };
@@ -37,24 +58,46 @@ namespace Test_Rayhan
             }
         }
 
-        public static void Splice()
+        //splice
+        public static void Splice(int[] arr, int indexNum, int num)
         {
+            int[] newArr = new int[arr.Length + 1];
+            for(int x = 0; x<indexNum; x++)
+            {
+                newArr[x] = arr[x]; 
+            }
+            newArr[indexNum] = num;
+            for(int x = indexNum + 1; x<newArr.Length; x++)
+            {
+                newArr[x] = arr[x];
+            }
+            newArr[indexNum] = num;
+            Console.Write(string.Join("", arr));
         }
     }
 
     class CaesarCipher
     {
-        // public static void Caesar()
-        // {
-        //     string sentence = "abcde";
-        //     char[] alphabet = new char[26] {a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z};
-
-        //     char[] arr = sentence.ToCharArray();
-        //     foreach(char a in arr)
-        //     {
-
-        //     }
-        // }
+        public static void Caesar(string str)
+        {
+            char[] sentenceArray = str.ToCharArray();
+            string alphabet = "abcdefghijklmnopqrstuvwxyz";
+            char[] alphabetArray = alphabet.ToCharArray();
+            string output_text = "";
+            for(int x = 0; x<sentenceArray.Length; x++)
+                {
+                    for(int y = 0; y<alphabetArray.Length; y++)
+                    {
+                        if(sentenceArray[x] == alphabetArray[y])
+                        {
+                            sentenceArray[x] = alphabetArray[(y + 2) % alphabetArray.Length];
+                            break;
+                        }
+                    }
+                }
+            output_text = new string (sentenceArray);
+            Console.WriteLine(output_text);
+        }
     }
 
     class FizzBuzz
@@ -219,8 +262,39 @@ namespace Test_Rayhan
                 {
                     smallest = y;
                 }
-                Swap(i, smallest);
-                display_array_elements();
+            }
+            return arr;
+        }
+    }
+
+    class Capitalizations
+    {
+        public static void Capitalize(string str)
+        {
+            char[] charsToTrim = {' '};
+            string newstr = str.Trim(charsToTrim);
+            char[] arr = newstr.ToCharArray();
+            
+            arr[0] = char.ToUpper(str[0]);
+            for(int x = 0; x<arr.Length; x++)
+            {
+                if(arr[x] == ' ')
+                arr[x+1] = char.ToUpper(str[x+1]);
+                Console.Write(arr[x]);                
+            }
+            
+        }
+    }
+
+    class Reversal
+    {
+        public static void Reverse(string str)
+        {
+            char[] arr = str.ToCharArray();
+            Array.Reverse(arr);
+            foreach(char x in arr)
+            {
+                Console.Write(x + "");
             }
         }
     }
